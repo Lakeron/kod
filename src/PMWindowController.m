@@ -12,7 +12,7 @@
 
 @implementation PMWindowController
 
-//@synthesize pmViewController;
+@synthesize pmViewController;
 
 - (void)awakeFromNib
 {

@@ -23,6 +23,8 @@
     NSView                      *currentView;
 }
 
+@property (retain,nonatomic) PMViewController *pmViewController;
+
 - (void)removeSubview;
 - (void)changeItemView:(NSString *)selection andIdentity: (NSString *) identyty;
 

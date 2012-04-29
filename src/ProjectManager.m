@@ -39,6 +39,9 @@
     [project setObject:n forKey:@"name"];
     [project setObject:p forKey:@"path"];
     [project setObject:@"(Keep your data organized. You can store FTP, GIT or any valuable information about your project.)" forKey:@"note"];
+    NSArray *todo = [[NSArray alloc] init];
+    [project setObject: todo forKey:@"todo"];
+    [todo release];
     
     NSDate* date = [NSDate date];
     NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];

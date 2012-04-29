@@ -8,10 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PMViewController : NSViewController <NSTableViewDataSource> {
-
-    IBOutlet NSTableView *tableView;
-    NSMutableArray *list;
+@interface PMViewController : NSViewController {
     id *project;
     NSTextField *titleLabel;
 	NSTextField *date;
@@ -24,8 +21,6 @@
 @property (nonatomic, retain) IBOutlet NSTextView *note;
 
 - (IBAction)openProject:(id)sender;
--(IBAction)add:(id)sender;
--(IBAction)remove:(id)sender;
 
 
 @end

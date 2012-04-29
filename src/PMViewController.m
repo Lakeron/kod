@@ -7,7 +7,6 @@
 //
 
 #import "PMViewController.h"
-#import "PMTodo.h"
 
 @class KAppDelegate;
 @class KDocumentController;
@@ -20,8 +19,6 @@
 
 -(void) awakeFromNib
 {
-    list = [[NSMutableArray alloc] init];
-    
 	[titleLabel setStringValue: [project objectForKey:@"name"]];
 	[date setStringValue: [project objectForKey:@"date"]];
     [note setString:[project objectForKey:@"note"]];
@@ -102,49 +99,5 @@
                         nonExistingFilesAsNewDocuments:NO
                         callback:nil];
 }
-
-
-#pragma TODO Section
-
--(NSInteger)numberOfRowsInTableView: (NSTableView *)tableView {
-    return [list count];
-}
-
--(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSLog(@"rooow");
-    PMTodo *todo = [list objectAtIndex:row];
-    NSString *identifier = [tableColumn identifier];
-    
-    return [todo valueForKey:identifier];
-}
-
--(void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    PMTodo *todo = [list objectAtIndex:row];
-    NSString *identifier = [tableColumn identifier];
-    [todo setValue:object forKey:identifier];
-    
-    [tableView reloadData];
-}
-
--(IBAction)add:(id)sender {
-    [list addObject:[[PMTodo alloc] init]];
-    
-    NSLog(@"superclass %@", [self superclass]);
-    
-    // ulozenie noveho todo k projektu
-    //    ProjectManager *pm = [[ProjectManager alloc] init];
-    //    [project setObject:list forKey:@"todo"];
-    //    [pm saveProject: project];
-    
-    
-    [tableView reloadData];
-}
-
--(IBAction)remove:(id)sender {
-    [tableView abortEditing];
-    [list removeObjectAtIndex: [tableView selectedRow]];
-    [tableView reloadData];
-}
-
 
 @end
