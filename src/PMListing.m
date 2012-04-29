@@ -21,25 +21,10 @@
 
 @implementation PMListing
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-    }
-    
-    return self;
-}
-
-
 - (void)awakeFromNib {
     NSLog(@"- (void)awakeFromNib %@", listView);
     
-    [self reloadData];
-}
-
--(void)reloadData {
-    NSLog(@"- (void)reloadData %@", listView);
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[[[NSApplication sharedApplication] delegate] pmWindow] getProjectsPlistPath]]];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController shared] getProjectsPlistPath]]];
     
     
     [listView setCellSpacing:2.0f];
@@ -89,7 +74,7 @@
 - (void)listViewSelectionDidChange:(NSNotification*)aNotification
 {
     NSLog(@"listViewSelectionDidChange");
-    [[[[NSApplication sharedApplication] delegate] pmWindow] changeItemView:@"project" andIdentity:[_listItems objectAtIndex:[[aNotification object] selectedRow]]];
+    [[PMWindowController shared] changeItemView:@"project" andIdentity:[_listItems objectAtIndex:[[aNotification object] selectedRow]]];
 }
 
 

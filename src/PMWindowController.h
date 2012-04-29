@@ -14,7 +14,6 @@
 
 @interface PMWindowController : NSWindowController {
 @public
-    NSWindow                    *pmWindow;
     IBOutlet PMDropController   *pmDropController;
     IBOutlet NSView             *nsView;
     PMViewController            *pmViewController;
@@ -24,6 +23,8 @@
 }
 
 @property (retain,nonatomic) PMViewController *pmViewController;
+
++(PMWindowController *)shared;
 
 - (void)removeSubview;
 - (void)changeItemView:(NSString *)selection andIdentity: (NSString *) identyty;

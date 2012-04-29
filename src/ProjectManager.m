@@ -22,10 +22,7 @@
     if (self) {
         // nacitanie aktualnych projektov
         
-        plistPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController alloc] getProjectsPlistPath]];
-        
-        
-//        plistPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[[[NSApplication sharedApplication] delegate] pmWindow] getProjectsPlistPath]];
+        plistPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController shared] getProjectsPlistPath]];
         projects = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];    
         
     }
@@ -76,7 +73,7 @@
 -(BOOL)save {
     [projects writeToFile:plistPath atomically:NO];
     
-    [[[[NSApplication sharedApplication] delegate] pmWindow] changeItemView:@"project" andIdentity:nil];
+    [[PMWindowController shared] changeItemView:@"project" andIdentity:nil];
     
     return YES;
 }

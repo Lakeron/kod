@@ -146,14 +146,21 @@
 
 - (IBAction)openProjectManager:(id)sender {
     NSLog(@"openProjectManager");
-    if(!pmWindow == nil) {
-        [pmWindow dealloc];
-    }
-    pmWindow = [[PMWindowController alloc] initWithWindowNibName:@"ProjectManager"];
     
-    [pmWindow showWindow:self];
+    NSWindow *window = [[[PMWindowController shared] initWithWindowNibName:@"ProjectManager"] window];
     
-    [pmWindow changeItemView:nil andIdentity:nil];
+    [window makeKeyAndOrderFront:self];
+
+    [[PMWindowController shared] changeItemView:nil andIdentity:nil];
+    
+//    if(!pmWindow == nil) {
+//        [pmWindow dealloc];
+//    }
+//    pmWindow = [[PMWindowController alloc] initWithWindowNibName:@"ProjectManager"];
+//    
+//    [pmWindow showWindow:self];
+//    
+//    [pmWindow changeItemView:nil andIdentity:nil];
 }
 
 - (IBAction)insertTab:(id)sender {

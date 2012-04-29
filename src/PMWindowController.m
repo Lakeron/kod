@@ -12,7 +12,34 @@
 
 @implementation PMWindowController
 
+static PMWindowController* _shared = nil;
+
 @synthesize pmViewController;
+
++(PMWindowController *)shared
+{
+	@synchronized([PMWindowController class])
+	{
+		if (!_shared)
+			[[self alloc] init];
+        
+		return _shared;
+	}
+    
+	return nil;
+}
+
++(id)alloc
+{
+	@synchronized([PMWindowController class])
+	{
+		NSAssert(_shared == nil, @"Attempted to allocate a second instance of a singleton.");
+		_shared = [super alloc];
+		return _shared;
+	}
+    
+	return nil;
+}
 
 - (void)awakeFromNib
 {
@@ -28,7 +55,6 @@
 
 - (void)changeItemView:(NSString *)selection andIdentity: (id *) identity
 {
-    [pmListing reloadData];
     if (selection) {
         if (selection == @"project")
         {

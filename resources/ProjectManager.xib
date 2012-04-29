@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
 		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1617</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
 		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">1617</string>
+			<string key="NS.object.0">1305</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -69,7 +69,7 @@
 											<string key="NSFrameSize">{236, 438}</string>
 											<reference key="NSSuperview" ref="254239845"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="806470986"/>
+											<reference key="NSNextKeyView" ref="271886004"/>
 										</object>
 									</object>
 									<string key="NSFrameSize">{238, 440}</string>
@@ -116,7 +116,7 @@
 							<string key="NSFrameSize">{238, 440}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="271886004"/>
+							<reference key="NSNextKeyView" ref="254239845"/>
 							<int key="NSsFlags">528</int>
 							<reference key="NSVScroller" ref="806470986"/>
 							<reference key="NSHScroller" ref="271886004"/>
@@ -147,7 +147,7 @@
 											<string key="NSFrameSize">{385, 439}</string>
 											<reference key="NSSuperview" ref="899607226"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="363880264"/>
+											<reference key="NSNextKeyView" ref="725848007"/>
 										</object>
 									</object>
 									<string key="NSFrameSize">{400, 440}</string>
@@ -164,7 +164,6 @@
 									<string key="NSFrame">{{384, 1}, {15, 438}}</string>
 									<reference key="NSSuperview" ref="32486109"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
 									<reference key="NSTarget" ref="32486109"/>
 									<string key="NSAction">_doScroller:</string>
 									<double key="NSCurValue">1</double>
@@ -186,14 +185,14 @@
 							<string key="NSFrame">{{237, 0}, {400, 440}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="725848007"/>
+							<reference key="NSNextKeyView" ref="899607226"/>
 							<int key="NSsFlags">528</int>
 							<reference key="NSVScroller" ref="363880264"/>
 							<reference key="NSHScroller" ref="725848007"/>
 							<reference key="NSContentView" ref="899607226"/>
 						</object>
 					</object>
-					<string key="NSFrameSize">{637, 470}</string>
+					<string key="NSFrame">{{7, 11}, {637, 470}}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="580625793"/>
@@ -202,9 +201,11 @@
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 			</object>
 			<object class="NSCustomView" id="556670163">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<string key="NSFrameSize">{400, 440}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<string key="NSClassName">PMDropController</string>
 			</object>
 			<object class="NSCustomObject" id="624967157">
@@ -245,6 +246,14 @@
 						<reference key="destination" ref="556670163"/>
 					</object>
 					<int key="connectionID">77</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">window</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1005"/>
+					</object>
+					<int key="connectionID">78</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -425,7 +434,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">77</int>
+			<int key="maxID">78</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
