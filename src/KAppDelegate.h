@@ -4,19 +4,23 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class SUUpdater, KTerminalUsageWindowController;
+@class SUUpdater, KTerminalUsageWindowController, KBrowserWindowController, PMWindowController;
 
 @interface KAppDelegate : NSObject <NSApplicationDelegate> {
-  IBOutlet SUUpdater *sparkleUpdater_;
-  IBOutlet NSMenu *syntaxModeMenu_;
-  IBOutlet NSMenuItem *show80charsMenuItem_;
-  IBOutlet NSMenuItem *coverBackgroundMenuItem_;
-  KTerminalUsageWindowController *terminalUsageWindowController_;
-  NSWindow *backgroundCoverWindow_;
+    IBOutlet SUUpdater *sparkleUpdater_;
+    IBOutlet NSMenu *syntaxModeMenu_;
+    IBOutlet NSMenuItem *show80charsMenuItem_;
+    IBOutlet NSMenuItem *coverBackgroundMenuItem_;
+    KTerminalUsageWindowController *terminalUsageWindowController_;
+    NSWindow *backgroundCoverWindow_;
+    PMWindowController *pmWindow;
 }
+
+@property (assign, nonatomic) PMWindowController *pmWindow;
 
 - (IBAction)newWindow:(id)sender;
 - (IBAction)newDocument:(id)sender;  // "New tab"
+- (IBAction)openProjectManager:(id)sender;
 - (IBAction)displayTerminalUsage:(id)sender;
 - (IBAction)displayAbout:(id)sender;
 - (IBAction)showColumnGuide:(id)sender;

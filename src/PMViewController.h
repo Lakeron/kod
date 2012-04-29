@@ -1,0 +1,31 @@
+//
+//  PMViewController.h
+//  kod
+//
+//  Created by SoftOne s.r.o. on 24.4.2012.
+//  Copyright 2012 SoftOne, s.r.o. All rights reserved.
+//
+
+#import <Cocoa/Cocoa.h>
+
+@interface PMViewController : NSViewController <NSTableViewDataSource> {
+
+    IBOutlet NSTableView *tableView;
+    NSMutableArray *list;
+    id *project;
+    NSTextField *titleLabel;
+	NSTextField *date;
+	NSTextView *note;
+}
+
+@property (assign, nonatomic) id *project;
+@property (nonatomic, retain) IBOutlet NSTextField *titleLabel;
+@property (nonatomic, retain) IBOutlet NSTextField *date;
+@property (nonatomic, retain) IBOutlet NSTextView *note;
+
+- (IBAction)openProject:(id)sender;
+-(IBAction)add:(id)sender;
+-(IBAction)remove:(id)sender;
+
+
+@end
