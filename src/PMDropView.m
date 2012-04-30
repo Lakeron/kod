@@ -6,10 +6,10 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "PMDropController.h"
+#import "PMDropView.h"
 #import "ProjectManager.h"
 
-@implementation PMDropController
+@implementation PMDropView
 
 @synthesize dragObject;
 @synthesize backgroundImage;
@@ -104,6 +104,7 @@
 }
 
 -(void)drawRect:(NSRect)dirtyRect{
+    NSLog(@"DROP drawRect");
     if(highlight) {
         self.backgroundImage = [NSImage imageNamed:@"drag-active.png"];
     } else {

@@ -8,14 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class PMDropController;
+@class PMDropView;
 @class PMViewController;
 @class PMListing;
 
 @interface PMWindowController : NSWindowController {
 @public
-    IBOutlet PMDropController   *pmDropController;
     IBOutlet NSView             *nsView;
+    PMDropView            *pmDropView;
     PMViewController            *pmViewController;
     PMWindowController          *pmWindowController;
     PMListing                   *pmListing;
@@ -23,6 +23,7 @@
 }
 
 @property (retain,nonatomic) PMViewController *pmViewController;
+@property (retain,nonatomic) PMDropView *pmDropView;
 
 +(PMWindowController *)shared;
 

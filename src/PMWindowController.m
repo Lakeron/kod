@@ -9,12 +9,13 @@
 #import "PMWindowController.h"
 #import "PMListing.h"
 #import "PMViewController.h"
+#import "PMDropView.h"
 
 @implementation PMWindowController
 
 static PMWindowController* _shared = nil;
 
-@synthesize pmViewController;
+@synthesize pmViewController, pmDropView;
 
 +(PMWindowController *)shared
 {
@@ -45,6 +46,7 @@ static PMWindowController* _shared = nil;
 {
 	// load the icon view controller for later use
 	pmViewController = [[PMViewController alloc] initWithNibName:@"PMViewController" bundle:nil];
+    pmDropView = [[PMDropView alloc] initWithFrame: [nsView frame]];
 	pmListing = [[PMListing alloc] init];
     
 }
@@ -73,8 +75,8 @@ static PMWindowController* _shared = nil;
             // zatial je tu drop ale malo by sem prist settings
             [self removeSubview];
             
-            [nsView addSubview:pmDropController];
-            currentView = pmDropController;
+            [nsView addSubview:pmDropView];
+            currentView = pmDropView;
         }
         
         NSRect newBounds;
@@ -95,8 +97,8 @@ static PMWindowController* _shared = nil;
         // so a container was selected - no view to display
         [self removeSubview];
         
-        [nsView addSubview:pmDropController];
-        currentView = pmDropController;
+        [nsView addSubview:pmDropView];
+        currentView = pmDropView;
     }
 }
 

@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PMDropController : NSView {
+@interface PMDropView: NSView {
     NSObject * dragObject;
     NSImage * backgroundImage;
     NSMutableDictionary * dict;

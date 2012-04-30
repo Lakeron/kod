@@ -170,7 +170,7 @@
 		6FA878B0154D5FA8002BAE00 /* PXListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA878A6154D5FA8002BAE00 /* PXListView.m */; };
 		6FA878B1154D5FA8002BAE00 /* MyListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA878AB154D5FA8002BAE00 /* MyListViewCell.m */; };
 		6FA878B2154D5FA8002BAE00 /* MyListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FA878AC154D5FA8002BAE00 /* MyListViewCell.xib */; };
-		6FA878C3154D5FC4002BAE00 /* PMDropController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA878B5154D5FC4002BAE00 /* PMDropController.m */; };
+		6FA878C3154D5FC4002BAE00 /* PMDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA878B5154D5FC4002BAE00 /* PMDropView.m */; };
 		6FA878C4154D5FC4002BAE00 /* PMWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA878B7154D5FC4002BAE00 /* PMWindowController.m */; };
 		6FA878C5154D5FC4002BAE00 /* ProjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA878B9154D5FC4002BAE00 /* ProjectManager.m */; };
 		6FA878C6154D5FC4002BAE00 /* PMListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA878BB154D5FC4002BAE00 /* PMListing.m */; };
@@ -190,6 +190,7 @@
 		6FA878DF154D608C002BAE00 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FA878DE154D608C002BAE00 /* MainMenu.xib */; };
 		6FA8790F154D6394002BAE00 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 6FA8790E154D6394002BAE00 /* sqlite3.c */; };
 		6FA87911154D639F002BAE00 /* CodeCompletionData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6FA87910154D639F002BAE00 /* CodeCompletionData.sqlite */; };
+		6FBEE411154E819800EFE23C /* PMDropView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FBEE410154E819800EFE23C /* PMDropView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -593,8 +594,8 @@
 		6FA878AA154D5FA8002BAE00 /* MyListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyListViewCell.h; sourceTree = "<group>"; };
 		6FA878AB154D5FA8002BAE00 /* MyListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyListViewCell.m; sourceTree = "<group>"; };
 		6FA878AC154D5FA8002BAE00 /* MyListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyListViewCell.xib; sourceTree = "<group>"; };
-		6FA878B4154D5FC4002BAE00 /* PMDropController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDropController.h; sourceTree = "<group>"; };
-		6FA878B5154D5FC4002BAE00 /* PMDropController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDropController.m; sourceTree = "<group>"; };
+		6FA878B4154D5FC4002BAE00 /* PMDropView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PMDropView.h; sourceTree = "<group>"; };
+		6FA878B5154D5FC4002BAE00 /* PMDropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDropView.m; sourceTree = "<group>"; };
 		6FA878B6154D5FC4002BAE00 /* PMWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMWindowController.h; sourceTree = "<group>"; };
 		6FA878B7154D5FC4002BAE00 /* PMWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMWindowController.m; sourceTree = "<group>"; };
 		6FA878B8154D5FC4002BAE00 /* ProjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectManager.h; sourceTree = "<group>"; };
@@ -622,6 +623,7 @@
 		6FA8790D154D6394002BAE00 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
 		6FA8790E154D6394002BAE00 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
 		6FA87910154D639F002BAE00 /* CodeCompletionData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CodeCompletionData.sqlite; sourceTree = "<group>"; };
+		6FBEE410154E819800EFE23C /* PMDropView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMDropView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1226,8 +1228,7 @@
 		6FA878B3154D5FB1002BAE00 /* ProjectManager */ = {
 			isa = PBXGroup;
 			children = (
-				6FA878B4154D5FC4002BAE00 /* PMDropController.h */,
-				6FA878B5154D5FC4002BAE00 /* PMDropController.m */,
+				6FBEE412154E81A000EFE23C /* DropPlace */,
 				6FA878B6154D5FC4002BAE00 /* PMWindowController.h */,
 				6FA878B7154D5FC4002BAE00 /* PMWindowController.m */,
 				6FA878B8154D5FC4002BAE00 /* ProjectManager.h */,
@@ -1267,6 +1268,16 @@
 				6FA8790E154D6394002BAE00 /* sqlite3.c */,
 			);
 			name = Database;
+			sourceTree = "<group>";
+		};
+		6FBEE412154E81A000EFE23C /* DropPlace */ = {
+			isa = PBXGroup;
+			children = (
+				6FA878B4154D5FC4002BAE00 /* PMDropView.h */,
+				6FA878B5154D5FC4002BAE00 /* PMDropView.m */,
+				6FBEE410154E819800EFE23C /* PMDropView.xib */,
+			);
+			name = DropPlace;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1467,6 +1478,7 @@
 				6FA878DD154D604D002BAE00 /* ProjectManager.xib in Resources */,
 				6FA878DF154D608C002BAE00 /* MainMenu.xib in Resources */,
 				6FA87911154D639F002BAE00 /* CodeCompletionData.sqlite in Resources */,
+				6FBEE411154E819800EFE23C /* PMDropView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1643,7 +1655,7 @@
 				6FA878AF154D5FA8002BAE00 /* PXListView+UserInteraction.m in Sources */,
 				6FA878B0154D5FA8002BAE00 /* PXListView.m in Sources */,
 				6FA878B1154D5FA8002BAE00 /* MyListViewCell.m in Sources */,
-				6FA878C3154D5FC4002BAE00 /* PMDropController.m in Sources */,
+				6FA878C3154D5FC4002BAE00 /* PMDropView.m in Sources */,
 				6FA878C4154D5FC4002BAE00 /* PMWindowController.m in Sources */,
 				6FA878C5154D5FC4002BAE00 /* ProjectManager.m in Sources */,
 				6FA878C6154D5FC4002BAE00 /* PMListing.m in Sources */,
