@@ -10,6 +10,7 @@
 #import "PMTodo.h"
 #import "ProjectManager.h"
 
+@class PMWindowController;
 @class KAppDelegate;
 
 @implementation PMTodoController
@@ -19,7 +20,7 @@
     self = [super init];
     if (self) {
         list = [[NSMutableArray alloc] init];
-        project = [[[[[NSApplication sharedApplication] delegate] pmWindow] pmViewController] project];
+        project = [[[PMWindowController shared] pmViewController] project];
         
         for(NSDictionary *item in [project objectForKey:@"todo"]) {
             NSLog(@"item %@", item);

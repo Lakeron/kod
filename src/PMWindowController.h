@@ -15,15 +15,16 @@
 @interface PMWindowController : NSWindowController {
 @public
     IBOutlet NSView             *nsView;
-    PMDropView            *pmDropView;
+    PMDropView                  *pmDropView;
     PMViewController            *pmViewController;
     PMWindowController          *pmWindowController;
-    PMListing                   *pmListing;
+    IBOutlet PMListing          *pmListing;
     NSView                      *currentView;
 }
 
 @property (retain,nonatomic) PMViewController *pmViewController;
 @property (retain,nonatomic) PMDropView *pmDropView;
+@property (retain,nonatomic) PMListing *pmListing;
 
 +(PMWindowController *)shared;
 

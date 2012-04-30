@@ -15,7 +15,7 @@
 
 static PMWindowController* _shared = nil;
 
-@synthesize pmViewController, pmDropView;
+@synthesize pmViewController, pmDropView, pmListing;
 
 +(PMWindowController *)shared
 {
@@ -45,10 +45,7 @@ static PMWindowController* _shared = nil;
 - (void)awakeFromNib
 {
 	// load the icon view controller for later use
-	pmViewController = [[PMViewController alloc] initWithNibName:@"PMViewController" bundle:nil];
     pmDropView = [[PMDropView alloc] initWithFrame: [nsView frame]];
-	pmListing = [[PMListing alloc] init];
-    
 }
 
 - (NSString*)getProjectsPlistPath {
@@ -60,6 +57,10 @@ static PMWindowController* _shared = nil;
     if (selection) {
         if (selection == @"project")
         {
+            if(pmViewController) {
+                [pmViewController release];
+            }
+            pmViewController = [[PMViewController alloc] initWithNibName:@"PMViewController" bundle:nil];
             NSLog(@"project %@", identity);
             // avoid a flicker effect by not removing the icon view if it is already embedded
             [self removeSubview];

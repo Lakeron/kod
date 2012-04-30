@@ -24,6 +24,13 @@
 - (void)awakeFromNib {
     NSLog(@"- (void)awakeFromNib %@", listView);
     
+    [self test];
+}
+
+-(void) test {
+    NSLog(@"TEST listView %@",listView);
+    NSLog(@"TEST _listItems %@",_listItems);
+    
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController shared] getProjectsPlistPath]]];
     
     

@@ -11,6 +11,8 @@
 
 @implementation PMDropView
 
+@class PMWindowController;
+
 @synthesize dragObject;
 @synthesize backgroundImage;
 @synthesize dict;
@@ -104,7 +106,6 @@
 }
 
 -(void)drawRect:(NSRect)dirtyRect{
-    NSLog(@"DROP drawRect");
     if(highlight) {
         self.backgroundImage = [NSImage imageNamed:@"drag-active.png"];
     } else {

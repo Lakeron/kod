@@ -164,6 +164,7 @@
 		3AF39DE212BEC15E00FC534A /* KPopUpContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF39DE112BEC15E00FC534A /* KPopUpContentView.m */; };
 		3AF3A0A512BF7F6400FC534A /* KAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3A0A412BF7F6400FC534A /* KAnimation.m */; };
 		6A5C071613662AE90063FED9 /* CSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A5C071513662AE90063FED9 /* CSS.framework */; };
+		6F7DD871154E86B000CA8C13 /* PMTodoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7DD870154E86B000CA8C13 /* PMTodoController.m */; };
 		6FA878AD154D5FA8002BAE00 /* PXListDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA8789F154D5FA8002BAE00 /* PXListDocumentView.m */; };
 		6FA878AE154D5FA8002BAE00 /* PXListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA878A1154D5FA8002BAE00 /* PXListViewCell.m */; };
 		6FA878AF154D5FA8002BAE00 /* PXListView+UserInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA878A4154D5FA8002BAE00 /* PXListView+UserInteraction.m */; };
@@ -579,6 +580,8 @@
 		3AF3A0A312BF7F6400FC534A /* KAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAnimation.h; sourceTree = "<group>"; };
 		3AF3A0A412BF7F6400FC534A /* KAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAnimation.m; sourceTree = "<group>"; };
 		6A5C071513662AE90063FED9 /* CSS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CSS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F7DD86F154E86B000CA8C13 /* PMTodoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTodoController.h; sourceTree = "<group>"; };
+		6F7DD870154E86B000CA8C13 /* PMTodoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTodoController.m; sourceTree = "<group>"; };
 		6FA8789E154D5FA8002BAE00 /* PXListDocumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXListDocumentView.h; sourceTree = "<group>"; };
 		6FA8789F154D5FA8002BAE00 /* PXListDocumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXListDocumentView.m; sourceTree = "<group>"; };
 		6FA878A0154D5FA8002BAE00 /* PXListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXListViewCell.h; sourceTree = "<group>"; };
@@ -594,7 +597,7 @@
 		6FA878AA154D5FA8002BAE00 /* MyListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyListViewCell.h; sourceTree = "<group>"; };
 		6FA878AB154D5FA8002BAE00 /* MyListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyListViewCell.m; sourceTree = "<group>"; };
 		6FA878AC154D5FA8002BAE00 /* MyListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyListViewCell.xib; sourceTree = "<group>"; };
-		6FA878B4154D5FC4002BAE00 /* PMDropView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PMDropView.h; sourceTree = "<group>"; };
+		6FA878B4154D5FC4002BAE00 /* PMDropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDropView.h; sourceTree = "<group>"; };
 		6FA878B5154D5FC4002BAE00 /* PMDropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMDropView.m; sourceTree = "<group>"; };
 		6FA878B6154D5FC4002BAE00 /* PMWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMWindowController.h; sourceTree = "<group>"; };
 		6FA878B7154D5FC4002BAE00 /* PMWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMWindowController.m; sourceTree = "<group>"; };
@@ -1242,6 +1245,8 @@
 				6FA878C0154D5FC4002BAE00 /* PMViewController.xib */,
 				6FA878C1154D5FC4002BAE00 /* PMTodo.h */,
 				6FA878C2154D5FC4002BAE00 /* PMTodo.m */,
+				6F7DD86F154E86B000CA8C13 /* PMTodoController.h */,
+				6F7DD870154E86B000CA8C13 /* PMTodoController.m */,
 			);
 			name = ProjectManager;
 			sourceTree = "<group>";
@@ -1663,6 +1668,7 @@
 				6FA878C8154D5FC4002BAE00 /* PMViewController.m in Sources */,
 				6FA878CA154D5FC4002BAE00 /* PMTodo.m in Sources */,
 				6FA8790F154D6394002BAE00 /* sqlite3.c in Sources */,
+				6F7DD871154E86B000CA8C13 /* PMTodoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
