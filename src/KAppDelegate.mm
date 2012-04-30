@@ -150,13 +150,8 @@
     NSWindow *window = [[[PMWindowController shared] initWithWindowNibName:@"ProjectManager"] window];
     
     [window makeKeyAndOrderFront:self];
-
+    
     [[PMWindowController shared] changeItemView:nil andIdentity:nil];
-    
-    NSLog(@"[PMWindowController shared] %@", [PMWindowController shared]);
-    NSLog(@"[[PMWindowController shared] pmListing] %@", [[PMWindowController shared] pmListing]);
-    
-    [[[PMWindowController shared] pmListing] test];
     
 //    if(!pmWindow == nil) {
 //        [pmWindow dealloc];

@@ -24,10 +24,10 @@
 - (void)awakeFromNib {
     NSLog(@"- (void)awakeFromNib %@", listView);
     
-    [self test];
+    [self reloadList];
 }
 
--(void) test {
+-(void) reloadList {
     NSLog(@"TEST listView %@",listView);
     NSLog(@"TEST _listItems %@",_listItems);
     

@@ -70,12 +70,10 @@
     return r;
 }
 
--(BOOL)save {
+-(ProjectManager *)save {
     [projects writeToFile:plistPath atomically:NO];
     
-    [[PMWindowController shared] changeItemView:@"project" andIdentity:nil];
-    
-    return YES;
+    return project;
 }
 
 -(BOOL)saveProject:(id) project
@@ -83,6 +81,11 @@
     [projects setObject:project forKey:[project objectForKey:@"path"]];
     
     [projects writeToFile:plistPath atomically:NO];
+    
+    //reload project list
+    [[[PMWindowController shared] pmListing] reloadList];
+    
+    return YES;
 }
 
 @end

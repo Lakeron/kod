@@ -86,9 +86,13 @@
             
             ProjectManager *project = [[ProjectManager alloc] init];
             [project setProductWithName:pbName AndPath: pbPath];
-            [project save];
+            project = [project save];
             
-            // dokoncit load noveho zoznamu a otvorenie programu
+            //reload project list
+            [[[PMWindowController shared] pmListing] reloadList];
+            
+            // try to open new project
+            [[PMWindowController shared] changeItemView:@"project" andIdentity:project];
             
             return NO;
         } else {

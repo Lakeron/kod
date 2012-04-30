@@ -22,6 +22,6 @@
 -(NSString *)getName:(int)i;
 -(NSString *)getPath:(int)i;
 -(BOOL)isValid;
--(BOOL)save;
+-(ProjectManager *)save;
 -(BOOL)saveProject:(id) project;
 @end
