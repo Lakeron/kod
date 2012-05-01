@@ -7,20 +7,22 @@
 @class KWordDictionary;
 
 @interface KTextView : NSTextView {
-  BOOL automaticallyKeepsIndentation_;
-  BOOL tabControlsIndentationLevel_;
-
-  // kconf value "editor/text/newline" (defaults to LF)
-  NSString *newlineString_;
-
-  // kconf value "editor/text/indentation" (defaults to 2xSP)
-  NSString *indentationString_;
-
-  // Column guide (vertical line) position
-  CGFloat columnGuidePosition_;
-
-  // Frequency counts of all words (e.g. used for autocomplete)
-  KWordDictionary *wordDictionary_;
+    BOOL automaticallyKeepsIndentation_;
+    BOOL tabControlsIndentationLevel_;
+    
+    // kconf value "editor/text/newline" (defaults to LF)
+    NSString *newlineString_;
+    
+    // kconf value "editor/text/indentation" (defaults to 2xSP)
+    NSString *indentationString_;
+    
+    // Column guide (vertical line) position
+    CGFloat columnGuidePosition_;
+    
+    // Frequency counts of all words (e.g. used for autocomplete)
+    KWordDictionary *wordDictionary_;
+    
+    int _completionLangID;   
 }
 
 // The parent document
@@ -43,6 +45,8 @@
  * Controlled by the kconf value "editor/indent/tabkey" (defaults to YES)
  */
 @property BOOL tabControlsIndentationLevel;
+
+@property (assign) int completionLangID;
 
 // Invoked when a proprety of kconf changed
 - (void)configurationValueDidChange:(NSNotification*)notification;

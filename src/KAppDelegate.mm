@@ -20,6 +20,8 @@
 
 #import <Sparkle/SUUpdater.h>
 
+#import "Database.h"
+
 #if K_WITH_F_SCRIPT
 #import <FScript/FScript.h>
 #endif
@@ -360,6 +362,8 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // TODO: terminate node thread
+    
+    [Database releaseShared];
 }
 
 

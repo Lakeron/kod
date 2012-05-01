@@ -164,6 +164,8 @@
 		3AF39DE212BEC15E00FC534A /* KPopUpContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF39DE112BEC15E00FC534A /* KPopUpContentView.m */; };
 		3AF3A0A512BF7F6400FC534A /* KAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3A0A412BF7F6400FC534A /* KAnimation.m */; };
 		6A5C071613662AE90063FED9 /* CSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A5C071513662AE90063FED9 /* CSS.framework */; };
+		6F4C07531550581300DA87F8 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4C07521550581300DA87F8 /* Database.m */; };
+		6F4C075715505A7000DA87F8 /* DatabaseRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4C075615505A7000DA87F8 /* DatabaseRow.m */; };
 		6F7DD871154E86B000CA8C13 /* PMTodoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7DD870154E86B000CA8C13 /* PMTodoController.m */; };
 		6F7DD873154E9E3A00CA8C13 /* setting.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F7DD872154E9E3A00CA8C13 /* setting.jpg */; };
 		6F7DD883154EA1C100CA8C13 /* PMSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7DD881154EA1C000CA8C13 /* PMSettingController.m */; };
@@ -584,6 +586,10 @@
 		3AF3A0A312BF7F6400FC534A /* KAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAnimation.h; sourceTree = "<group>"; };
 		3AF3A0A412BF7F6400FC534A /* KAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAnimation.m; sourceTree = "<group>"; };
 		6A5C071513662AE90063FED9 /* CSS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CSS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F4C07511550581300DA87F8 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		6F4C07521550581300DA87F8 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		6F4C075515505A7000DA87F8 /* DatabaseRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseRow.h; sourceTree = "<group>"; };
+		6F4C075615505A7000DA87F8 /* DatabaseRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseRow.m; sourceTree = "<group>"; };
 		6F7DD86F154E86B000CA8C13 /* PMTodoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMTodoController.h; sourceTree = "<group>"; };
 		6F7DD870154E86B000CA8C13 /* PMTodoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTodoController.m; sourceTree = "<group>"; };
 		6F7DD872154E9E3A00CA8C13 /* setting.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = setting.jpg; sourceTree = "<group>"; };
@@ -1217,6 +1223,16 @@
 			name = "Pop-ups";
 			sourceTree = "<group>";
 		};
+		6F4C07541550581700DA87F8 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				6FA8790C154D6394002BAE00 /* sqlite3ext.h */,
+				6FA8790D154D6394002BAE00 /* sqlite3.h */,
+				6FA8790E154D6394002BAE00 /* sqlite3.c */,
+			);
+			name = Connection;
+			sourceTree = "<group>";
+		};
 		6F7DD874154E9F4800CA8C13 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1301,9 +1317,11 @@
 		6FA8790B154D6381002BAE00 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				6FA8790C154D6394002BAE00 /* sqlite3ext.h */,
-				6FA8790D154D6394002BAE00 /* sqlite3.h */,
-				6FA8790E154D6394002BAE00 /* sqlite3.c */,
+				6F4C07541550581700DA87F8 /* Connection */,
+				6F4C07511550581300DA87F8 /* Database.h */,
+				6F4C07521550581300DA87F8 /* Database.m */,
+				6F4C075515505A7000DA87F8 /* DatabaseRow.h */,
+				6F4C075615505A7000DA87F8 /* DatabaseRow.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -1705,6 +1723,8 @@
 				6F7DD871154E86B000CA8C13 /* PMTodoController.m in Sources */,
 				6F7DD883154EA1C100CA8C13 /* PMSettingController.m in Sources */,
 				6F7DD8B115501E2F00CA8C13 /* PMErrorField.m in Sources */,
+				6F4C07531550581300DA87F8 /* Database.m in Sources */,
+				6F4C075715505A7000DA87F8 /* DatabaseRow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
