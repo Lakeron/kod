@@ -7,6 +7,7 @@
 //
 
 #import "PMViewController.h"
+#import "PMWindowController.h"
 
 @class KAppDelegate;
 @class KDocumentController;
@@ -14,23 +15,45 @@
 
 @implementation PMViewController
 
-@synthesize project, titleLabel, date, note;
+@synthesize project, titleLabel, date, note, noteLock, noteView, password;
 
 
 -(void) awakeFromNib
 {
-	[titleLabel setStringValue: [project objectForKey:@"name"]];
-	[date setStringValue: [project objectForKey:@"date"]];
+    [titleLabel setStringValue: [project objectForKey:@"name"]];
+    [date setStringValue: [project objectForKey:@"date"]];
     [note setString:[project objectForKey:@"note"]];
+    
+    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController shared] getSettingsPlistPath]];
+    current_password = [[NSMutableDictionary dictionaryWithContentsOfFile:path] objectForKey:@"password"];
+    
+    if(current_password) {
+        [noteView setHidden:YES];
+        [noteLock setHidden:NO];
+    } else {
+        [noteView setHidden:NO];
+        [noteLock setHidden:YES];
+    }
 }
 
-- (void)textViewDidChangeSelection:(NSNotification *)aNotification {
+-(void)textViewDidChangeSelection:(NSNotification *)aNotification {
     ProjectManager *pm = [[ProjectManager alloc] init];
     [project setObject:[note string] forKey:@"note"];
     [pm saveProject: project];
 }
 
-- (IBAction)openProject:(id)sender 
+-(IBAction)unlockNote:(id)sender
+{
+    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController shared] getSettingsPlistPath]];
+    current_password = [[NSMutableDictionary dictionaryWithContentsOfFile:path] objectForKey:@"password"];
+    
+    if(![password.stringValue isEqualToString:@""] && [password.stringValue isEqualToString:current_password]) {        
+        [noteLock setHidden:YES];
+        [noteView setHidden:NO];
+    }
+}
+
+-(IBAction)openProject:(id)sender 
 {
    // otvorit dokument
     // find item under project folder
