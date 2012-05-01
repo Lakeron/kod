@@ -6,9 +6,9 @@
 //  Copyright 2012 SoftOne, s.r.o. All rights reserved.
 //
 
-#import "PMSettingView.h"
+#import "PMSetting.h"
 
-@implementation PMSettingView
+@implementation PMSetting
 
 - (id)initWithFrame:(NSRect)frame
 {

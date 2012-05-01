@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PMSettingView : NSView
+@interface PMSetting : NSView
 
 @end

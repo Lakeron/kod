@@ -11,6 +11,7 @@
 @class PMDropView;
 @class PMViewController;
 @class PMListing;
+@class PMSettingController;
 
 @interface PMWindowController : NSWindowController {
 @public
@@ -18,6 +19,7 @@
     PMDropView                  *pmDropView;
     PMViewController            *pmViewController;
     PMWindowController          *pmWindowController;
+    PMSettingController         *pmSettingController;
     IBOutlet PMListing          *pmListing;
     NSView                      *currentView;
 }
@@ -25,6 +27,7 @@
 @property (retain,nonatomic) PMViewController *pmViewController;
 @property (retain,nonatomic) PMDropView *pmDropView;
 @property (retain,nonatomic) PMListing *pmListing;
+@property (retain,nonatomic) PMSettingController *pmSettingController;
 
 +(PMWindowController *)shared;
 
@@ -32,5 +35,8 @@
 - (void)changeItemView:(NSString *)selection andIdentity: (NSString *) identyty;
 
 - (NSString*)getProjectsPlistPath;
+- (NSString*)getSettingsPlistPath;
+
+-(IBAction)openSetting:(id)sender;
 
 @end

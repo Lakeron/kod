@@ -19,7 +19,7 @@
     PXListView *listViewDelegate;
 }
 
--(void) reloadData;
+-(void) reloadList;
 - (NSUInteger)numberOfRowsInListView: (PXListView*)aListView;
 - (CGFloat)listView:(PXListView*)aListView heightOfRow:(NSUInteger)row;
 - (void)listViewSelectionDidChange:(NSNotification*)aNotification;

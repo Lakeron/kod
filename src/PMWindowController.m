@@ -10,12 +10,13 @@
 #import "PMListing.h"
 #import "PMViewController.h"
 #import "PMDropView.h"
+#import "PMSettingController.h"
 
 @implementation PMWindowController
 
 static PMWindowController* _shared = nil;
 
-@synthesize pmViewController, pmDropView, pmListing;
+@synthesize pmViewController, pmDropView, pmListing, pmSettingController;
 
 +(PMWindowController *)shared
 {
@@ -52,6 +53,10 @@ static PMWindowController* _shared = nil;
     return [[NSString alloc] initWithFormat:@"Contents/Resources/projects.plist"];
 }
 
+- (NSString*)getSettingsPlistPath {
+    return [[NSString alloc] initWithFormat:@"Contents/Resources/settings.plist"];
+}
+
 - (void)changeItemView:(NSString *)selection andIdentity: (id *) identity
 {
     if (selection) {
@@ -73,11 +78,15 @@ static PMWindowController* _shared = nil;
         }
         else if (selection == @"setting")
         {
+            if(pmSettingController) {
+                [pmSettingController release];
+            }
+            pmSettingController = [[PMSettingController alloc] initWithNibName:@"PMSettingController" bundle:nil];
             // zatial je tu drop ale malo by sem prist settings
             [self removeSubview];
             
-            [nsView addSubview:pmDropView];
-            currentView = pmDropView;
+            [nsView addSubview: [pmSettingController view]];
+            currentView = [pmSettingController view];
         }
         
         NSRect newBounds;
@@ -113,6 +122,11 @@ static PMWindowController* _shared = nil;
 	}
 	
 	[nsView displayIfNeeded];	// we want the removed views to disappear right away
+}
+
+-(IBAction)openSetting:(id)sender 
+{
+    [self changeItemView:@"setting" andIdentity:nil];
 }
 
 @end

@@ -22,15 +22,10 @@
 @implementation PMListing
 
 - (void)awakeFromNib {
-    NSLog(@"- (void)awakeFromNib %@", listView);
-    
     [self reloadList];
 }
 
 -(void) reloadList {
-    NSLog(@"TEST listView %@",listView);
-    NSLog(@"TEST _listItems %@",_listItems);
-    
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController shared] getProjectsPlistPath]]];
     
     
