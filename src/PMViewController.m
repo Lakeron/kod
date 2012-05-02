@@ -108,7 +108,6 @@
             [urls addObject:[[NSURL alloc] initFileURLWithPath: item]];
         }
     } else if([contents count]) {
-//        NSLog(@"contents %@", contents);
         urls = [NSArray arrayWithObject:[files objectAtIndex:0]];
     } else {
         // open a untitle
@@ -121,8 +120,6 @@
     [[KBrowserWindowController browserWindowController] retain];
     
     [windowController setProject:[project objectForKey:@"path"]];
-    NSLog(@"windowController andrej %@", windowController);
-    NSLog(@"windowController andrej project %@", [windowController getProject]);
     
     KDocumentController *documentController =
     (KDocumentController*)[NSDocumentController sharedDocumentController];

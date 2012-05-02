@@ -28,6 +28,7 @@
 #import "KASTViewerController.h"
 #import "KMachService-NSInvocation.h"
 #import "ProjectManager.h"
+#import "Database.h"
 
 #import "NSImage-kod.h"
 #import "CIImage-kod.h"
@@ -604,6 +605,12 @@ static NSString* _kDefaultTitle = @"Untitled";
     [project addActiveFile:self.fileURL toProject: [[self windowController] getProject]];
     
     [project release];
+    
+    NSString *select = [NSString stringWithFormat:@"SELECT language_id FROM file_type WHERE uti = '%@'", self.type];
+    textView_.completionLangID = INT_MIN;
+    [[Database shared] selectFromDatabase:select forEachRow:^(DatabaseRow *dbRow) {
+    textView_.completionLangID = [dbRow intValueForColumn:@"language_id"];
+    }];
   KNodeEmitEvent("activateDocument", self, nil);
 }
 

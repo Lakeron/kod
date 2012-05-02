@@ -82,7 +82,7 @@ static CGFloat kColumnGuideWidth = 1.0;
            source:[KStyle sharedStyle]
           handler:@selector(styleDidChange:)];
     
-    _completionLangID = NSIntegerMin;
+    _completionLangID = -1;
     
     return self;
 }
@@ -840,18 +840,22 @@ static CGFloat kColumnGuideWidth = 1.0;
     NSString *prefix = [text substringWithRange:charRange];
     
     NSMutableArray *tmpArr = [[NSMutableArray alloc] init];
-    
-    NSString *select = [NSString stringWithFormat:@"SELECT value FROM completion WHERE language_id = %d AND key LIKE '%@%%'", self.completionLangID, prefix];
-    //    NSLog(@"select in textView: %@", select);
-    
-    [[Database shared] selectFromDatabase:select forEachRow:^(DatabaseRow *dbRow) {
-        [tmpArr addObject:[dbRow stringValueForColumn:@"value"]];
-    }];
+    [tmpArr addObject:[NSString stringWithString:@""]];
+    if(self.completionLangID > -1 && [prefix length] > 1) {
+        NSString *select = [NSString stringWithFormat:@"SELECT value FROM completion WHERE language_id = %d AND key LIKE '%@%%'", self.completionLangID, prefix];
+        
+        [[Database shared] selectFromDatabase:select forEachRow:^(DatabaseRow *dbRow) {
+            [tmpArr addObject:[dbRow stringValueForColumn:@"value"]];
+        }];
+    }
     
     [tmpArr addObjectsFromArray:[wordDictionary_ completionsForPrefix:prefix
                                                            atPosition:charRange.location
                                                                inText:text
                                                            countLimit:100]];
+    if([tmpArr count] == 1) {
+        [tmpArr removeObjectAtIndex:0];
+    }
     return [tmpArr autorelease];
 }
 
