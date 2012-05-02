@@ -102,8 +102,12 @@
     
     // choose files to open
     
-    NSArray *urls = [[NSArray alloc] init];
-    if([contents count]) {
+    NSMutableArray *urls = [[NSMutableArray alloc] init];
+    if ([[project objectForKey:@"activeFiles"] count] > 0) {
+        for(NSString *item in [project objectForKey:@"activeFiles"]) {
+            [urls addObject:[[NSURL alloc] initFileURLWithPath: item]];
+        }
+    } else if([contents count]) {
 //        NSLog(@"contents %@", contents);
         urls = [NSArray arrayWithObject:[files objectAtIndex:0]];
     } else {
@@ -111,10 +115,12 @@
         
     } 
     
+    NSLog(@"urls %@", urls);
+    
     KBrowserWindowController* windowController = (KBrowserWindowController*)
     [[KBrowserWindowController browserWindowController] retain];
     
-    [windowController setProject:dir];
+    [windowController setProject:[project objectForKey:@"path"]];
     NSLog(@"windowController andrej %@", windowController);
     NSLog(@"windowController andrej project %@", [windowController getProject]);
     

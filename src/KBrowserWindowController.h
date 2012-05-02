@@ -16,12 +16,12 @@
   NSInteger goToLineLastValue_;
   KPopUp *goToLinePopUp_; // non-nil while active
     
-  NSString *projectAndrej;
+  NSString *project;
 }
 
 @property(readonly) NSSplitView *verticalSplitView;
 @property(readonly) CGFloat statusBarHeight;
-@property(nonatomic) NSString *projectAndrej;
+@property(readonly) NSString *projectAndrej;
 
 // TODO: fullscreen
 // implement lockBarVisibilityForOwner... and friends (see chromium source)

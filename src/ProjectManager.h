@@ -18,10 +18,16 @@
 @property (nonatomic, retain) NSMutableDictionary *project;
 @property (nonatomic, retain) NSString *plistPath;
 
--(void)setProductWithName: (NSString *)n AndPath: (NSString *)p;
+-(void)setProductWithName:(NSString *)n AndPath: (NSString *)p;
+-(void)addActiveFile:(NSURL *)url toProject:(NSString *)p;
+-(void)removeActiveFile:(NSURL *)url toProject:(NSString *)p;
+
 -(NSString *)getName:(int)i;
 -(NSString *)getPath:(int)i;
+
 -(BOOL)isValid;
--(ProjectManager *)save;
 -(BOOL)saveProject:(id) project;
+
+-(ProjectManager *)save;
+
 @end

@@ -41,8 +41,10 @@ extern NSString *const KDocumentWillCloseNotification;
 
   // Meta ruler (nil if not shown)
   __weak KMetaRulerView *metaRulerView_;
-}
-
+                                          
+  BOOL closeWithDelegate;
+                                      }
+@property(assign, nonatomic) BOOL closeWithDelegate;
 @property(assign, nonatomic) BOOL isDirty;
 @property BOOL hasMetaRuler;
 @property(readonly) BOOL canSaveDocument;

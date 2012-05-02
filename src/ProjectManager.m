@@ -36,9 +36,10 @@
     [project setObject:n forKey:@"name"];
     [project setObject:p forKey:@"path"];
     [project setObject:@"(Keep your data organized. You can store FTP, GIT or any valuable information about your project.)" forKey:@"note"];
-    NSArray *todo = [[NSArray alloc] init];
-    [project setObject: todo forKey:@"todo"];
-    [todo release];
+    NSArray *emptyArray = [[NSArray alloc] init];
+    [project setObject: emptyArray forKey:@"todo"];
+    [project setObject: emptyArray forKey:@"activeFiles"];
+    [emptyArray release];
     
     NSDate* date = [NSDate date];
     NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
@@ -86,6 +87,47 @@
     [[[PMWindowController shared] pmListing] reloadList];
     
     return YES;
+}
+
+-(void)addActiveFile:(NSURL *)url toProject:(NSString *)p 
+{
+    if(p) {
+        project = [projects objectForKey:p];
+        if(project) {
+            NSMutableArray *activeFiles = [project objectForKey:@"activeFiles"];
+            if(activeFiles) {
+                for(NSString *item in activeFiles) {
+                    if([item isEqualToString:[url path]]) {
+                        return;
+                    }
+                }
+                [activeFiles addObject:[url path]];
+                [project setObject:activeFiles forKey:@"activeFiles"];
+                
+                [self saveProject:project];
+            }
+        }
+    }
+}
+
+-(void)removeActiveFile:(NSURL *)url toProject:(NSString *)p
+{
+    if(p) {
+        project = [projects objectForKey:p];
+        if(project) {
+            NSMutableArray *activeFiles = [project objectForKey:@"activeFiles"];
+            if(activeFiles) {
+                for (int i =0; i < [activeFiles count]; i++) {
+                    if([[activeFiles objectAtIndex:i] isEqualToString:[url path]]) {
+                        [activeFiles removeObjectAtIndex:i];
+                    }
+                }
+                [project setObject:activeFiles forKey:@"activeFiles"];
+                
+                [self saveProject:project];
+            }
+        }
+    }
 }
 
 @end

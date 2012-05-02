@@ -31,13 +31,11 @@
 #pragma mark Initialization
 
 - (NSString*)getProject {
-//    NSLog(@"getProject andrej %@", projectAndrej);
-    return @"test";
+    return project;
 }
 
 - (void)setProject:(NSString *)p {
-    NSLog(@"setProject andrej %@", p);
-    projectAndrej = p;
+    project = p;
 }
 
 - (id)initWithWindowNibPath:(NSString *)windowNibPath
@@ -95,6 +93,7 @@
 
 
 - (void)dealloc {
+    NSLog(@"Windows Broser dealloc");
   [self stopObserving];
   [[self window] setDelegate:nil];
   if (toolbarController_)

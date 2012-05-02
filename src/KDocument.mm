@@ -27,6 +27,7 @@
 #import "KASTViewerWindowController.h"
 #import "KASTViewerController.h"
 #import "KMachService-NSInvocation.h"
+#import "ProjectManager.h"
 
 #import "NSImage-kod.h"
 #import "CIImage-kod.h"
@@ -82,7 +83,8 @@ static uint64_t KDocumentNextIdentifier() {
 @implementation KDocument
 
 @synthesize textEncoding = textEncoding_,
-            textView = textView_;
+            textView = textView_,
+            closeWithDelegate;
 
 static NSImage* _kDefaultIcon = nil;
 static NSString* _kDefaultTitle = @"Untitled";
@@ -110,6 +112,7 @@ static NSString* _kDefaultTitle = @"Untitled";
   // Default title and icon
   self.title = _kDefaultTitle;
   self.icon = _kDefaultIcon;
+  closeWithDelegate = NO;
 
   // Default text encoding for new "Untitled" documents
   textEncoding_ = NSUTF8StringEncoding;
@@ -168,7 +171,7 @@ static NSString* _kDefaultTitle = @"Untitled";
 
   // register as text storage delegate
   textView_.textStorage.delegate = self;
-
+    
   return self;
 }
 
@@ -190,7 +193,7 @@ static NSString* _kDefaultTitle = @"Untitled";
     if (outError) kassert(*outError != nil);
     return nil;
   }
-
+    
   return self;
 }
 
@@ -547,6 +550,16 @@ static NSString* _kDefaultTitle = @"Untitled";
 - (void)tabWillCloseInBrowser:(CTBrowser*)browser atIndex:(NSInteger)index {
   NSNumber *ident = [NSNumber numberWithUnsignedInteger:self.identifier];
 
+
+    NSLog(@"close KDocument");
+    if(!closeWithDelegate) {
+        NSLog(@"closeWithDelegate");
+        ProjectManager *project = [[ProjectManager alloc] init];
+        
+        [project removeActiveFile:self.fileURL toProject: [[self windowController] getProject]];
+        
+        [project release];
+    }
   KNodeEmitEvent("closeDocument", self, ident, nil);
   // TODO(rsms): emit "close" event in nodejs on our v8 wrapper object instead
   // of the kod module.
@@ -583,7 +596,14 @@ static NSString* _kDefaultTitle = @"Untitled";
     if ([NSThread isMainThread]) { [self debugUpdateASTViewer:self]; }
     else { K_DISPATCH_MAIN_ASYNC({ [self debugUpdateASTViewer:self]; }); }
   }
+    
+    NSLog(@"load KDocument");
 
+    ProjectManager *project = [[ProjectManager alloc] init];
+    
+    [project addActiveFile:self.fileURL toProject: [[self windowController] getProject]];
+    
+    [project release];
   KNodeEmitEvent("activateDocument", self, nil);
 }
 
@@ -823,6 +843,7 @@ static void _exploreNode(NSTextStorage *textStorage,
 - (void)canCloseDocumentWithDelegate:(id)delegate
                  shouldCloseSelector:(SEL)shouldCloseSelector
                          contextInfo:(void *)contextInfo {
+  closeWithDelegate = YES;
   if (self.isDirty && self.browser) {
     [self.browser selectTabAtIndex:[self.browser indexOfTabContents:self]];
   }
@@ -1451,8 +1472,6 @@ static void _lb_offset_ranges(std::vector<NSRange> &lineToRangeVec,
   #if 0 && K_DEBUG_BUILD
   DLOG_RANGE(editedRange, textStorage.string);
 #endif
-    NSLog(@"test andrej %@", [self windowController]);
-    NSLog(@"test andrej2 %@", [[self windowController] getProject]);
     
   DLOG("editedRange: %@, changeDelta: %d, wasInUndoRedo: %@, editedMask: %d",
        NSStringFromRange(editedRange), changeDelta,
