@@ -12,6 +12,7 @@
 @class KAppDelegate;
 @class KDocumentController;
 @class ProjectManager;
+@class KBrowserWindowController;
 
 @implementation PMViewController
 
@@ -103,24 +104,35 @@
     
     NSArray *urls = [[NSArray alloc] init];
     if([contents count]) {
-//        NSLog(@"kurva %@", contents);
+//        NSLog(@"contents %@", contents);
         urls = [NSArray arrayWithObject:[files objectAtIndex:0]];
     } else {
         // open a untitle
         
     } 
     
-    KAppDelegate *appDelegate = [[NSApplication sharedApplication] delegate];
+    KBrowserWindowController* windowController = (KBrowserWindowController*)
+    [[KBrowserWindowController browserWindowController] retain];
     
-    [appDelegate application:[NSApplication sharedApplication] openFiles: [NSArray arrayWithObject:dir]]; 
+    [windowController setProject:dir];
+    NSLog(@"windowController andrej %@", windowController);
+    NSLog(@"windowController andrej project %@", [windowController getProject]);
+    
     KDocumentController *documentController =
     (KDocumentController*)[NSDocumentController sharedDocumentController];
     
     [documentController openDocumentsWithContentsOfURLs: urls
-                        withWindowController: nil
+                        withWindowController: windowController
                         priority:0
                         nonExistingFilesAsNewDocuments:NO
                         callback:nil];
+    
+    NSURL *dirURL = [NSURL fileURLWithPath:dir
+                               isDirectory:YES];
+    NSError *error = nil;
+    if (![windowController openFileDirectoryAtURL:dirURL error:&error]) {
+        NSLog(@"failed to read directory %@ -- %@", dirURL, error);
+    }
 }
 
 @end

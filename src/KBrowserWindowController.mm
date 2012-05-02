@@ -25,10 +25,20 @@
 @implementation KBrowserWindowController
 
 @synthesize verticalSplitView = splitView_;
+@synthesize projectAndrej;
 
 #pragma mark -
 #pragma mark Initialization
 
+- (NSString*)getProject {
+//    NSLog(@"getProject andrej %@", projectAndrej);
+    return @"test";
+}
+
+- (void)setProject:(NSString *)p {
+    NSLog(@"setProject andrej %@", p);
+    projectAndrej = p;
+}
 
 - (id)initWithWindowNibPath:(NSString *)windowNibPath
                     browser:(CTBrowser*)browser {

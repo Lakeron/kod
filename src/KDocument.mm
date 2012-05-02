@@ -1450,8 +1450,10 @@ static void _lb_offset_ranges(std::vector<NSRange> &lineToRangeVec,
                        [[self undoManager] isRedoing];
   #if 0 && K_DEBUG_BUILD
   DLOG_RANGE(editedRange, textStorage.string);
-  #endif
-
+#endif
+    NSLog(@"test andrej %@", [self windowController]);
+    NSLog(@"test andrej2 %@", [[self windowController] getProject]);
+    
   DLOG("editedRange: %@, changeDelta: %d, wasInUndoRedo: %@, editedMask: %d",
        NSStringFromRange(editedRange), changeDelta,
        wasInUndoRedo ? @"YES":@"NO", textStorage.editedMask);
