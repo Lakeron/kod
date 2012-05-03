@@ -15,6 +15,7 @@
     IBOutlet NSView *activePass;
     IBOutlet NSView *changePass;
     IBOutlet NSView *placeholderLock;
+    IBOutlet NSButtonCell *checkboxAutosuggestion;
     NSView *activeView;
     
     NSSecureTextField *password;
@@ -38,8 +39,6 @@
 @property (retain) IBOutlet NSSecureTextField *c_currentPassword;
 @property (retain) IBOutlet NSTextField *title_newPass;
 @property (retain) IBOutlet NSTextField *title_changePass;
-@property (retain,nonatomic) NSMutableDictionary *dictionary;
-@property (retain,nonatomic) NSString *path;
 
 -(void)changeItemView:(NSString *)selection andIdentity: (NSString *) identity;
 -(void)removeSubview;
@@ -47,4 +46,5 @@
 
 -(IBAction)setLock:(id)sender;
 -(IBAction)save:(id)sender;
+-(IBAction)changeAutosuggestionStatus:(id)sender;
 @end

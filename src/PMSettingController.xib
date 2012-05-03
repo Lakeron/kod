@@ -38,13 +38,46 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
+					<object class="NSButton" id="739702427">
+						<reference key="NSNextResponder" ref="1005"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{18, 236}, {166, 18}}</string>
+						<reference key="NSSuperview" ref="1005"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSButtonCell" key="NSCell" id="588387849">
+							<int key="NSCellFlags">-2080244224</int>
+							<int key="NSCellFlags2">0</int>
+							<string key="NSContents">Enable autosuggestion</string>
+							<object class="NSFont" key="NSSupport" id="80073469">
+								<string key="NSName">LucidaGrande</string>
+								<double key="NSSize">13</double>
+								<int key="NSfFlags">1044</int>
+							</object>
+							<reference key="NSControlView" ref="739702427"/>
+							<int key="NSButtonFlags">1211912703</int>
+							<int key="NSButtonFlags2">2</int>
+							<object class="NSCustomResource" key="NSNormalImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">NSSwitch</string>
+							</object>
+							<object class="NSButtonImageSource" key="NSAlternateImage">
+								<string key="NSImageName">NSSwitch</string>
+							</object>
+							<string key="NSAlternateContents"/>
+							<string key="NSKeyEquivalent"/>
+							<int key="NSPeriodicDelay">200</int>
+							<int key="NSPeriodicInterval">25</int>
+						</object>
+					</object>
 					<object class="NSCustomView" id="118737284">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{20, 275}, {360, 125}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="739702427"/>
 						<string key="NSClassName">NSView</string>
 					</object>
 					<object class="NSTextField" id="412918637">
@@ -59,11 +92,7 @@
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">Setting</string>
-							<object class="NSFont" key="NSSupport" id="80073469">
-								<string key="NSName">LucidaGrande</string>
-								<double key="NSSize">13</double>
-								<int key="NSfFlags">1044</int>
-							</object>
+							<reference key="NSSupport" ref="80073469"/>
 							<reference key="NSControlView" ref="412918637"/>
 							<object class="NSColor" key="NSBackgroundColor" id="616600831">
 								<int key="NSColorSpace">6</int>
@@ -585,6 +614,22 @@
 					</object>
 					<int key="connectionID">122</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeAutosuggestionStatus:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="588387849"/>
+					</object>
+					<int key="connectionID">131</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">checkboxAutosuggestion</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="588387849"/>
+					</object>
+					<int key="connectionID">132</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -618,6 +663,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="412918637"/>
 							<reference ref="118737284"/>
+							<reference ref="739702427"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -887,6 +933,19 @@
 						<reference key="object" ref="779332560"/>
 						<reference key="parent" ref="383328437"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">128</int>
+						<reference key="object" ref="739702427"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="588387849"/>
+						</array>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">129</int>
+						<reference key="object" ref="588387849"/>
+						<reference key="parent" ref="739702427"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -905,6 +964,8 @@
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="110.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="111.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="128.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="129.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -940,7 +1001,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">125</int>
+			<int key="maxID">132</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -948,10 +1009,15 @@
 					<string key="className">PMSettingController</string>
 					<string key="superclassName">NSViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="changeAutosuggestionStatus:">id</string>
 						<string key="save:">id</string>
 						<string key="setLock:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="changeAutosuggestionStatus:">
+							<string key="name">changeAutosuggestionStatus:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="save:">
 							<string key="name">save:</string>
 							<string key="candidateClassName">id</string>
@@ -967,6 +1033,7 @@
 						<string key="c_password">NSSecureTextField</string>
 						<string key="c_repeatPassword">NSSecureTextField</string>
 						<string key="changePass">NSView</string>
+						<string key="checkboxAutosuggestion">NSButtonCell</string>
 						<string key="deactivePass">NSView</string>
 						<string key="password">NSSecureTextField</string>
 						<string key="placeholderLock">NSView</string>
@@ -994,6 +1061,10 @@
 						<object class="IBToOneOutletInfo" key="changePass">
 							<string key="name">changePass</string>
 							<string key="candidateClassName">NSView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="checkboxAutosuggestion">
+							<string key="name">checkboxAutosuggestion</string>
+							<string key="candidateClassName">NSButtonCell</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="deactivePass">
 							<string key="name">deactivePass</string>
@@ -1031,5 +1102,9 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">NSSwitch</string>
+			<string key="NS.object.0">{15, 15}</string>
+		</object>
 	</data>
 </archive>

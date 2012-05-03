@@ -12,7 +12,7 @@
 
 @implementation PMSettingController
 
-@synthesize password,repeatPassword,c_password,c_repeatPassword,c_currentPassword,title_newPass,title_changePass, path, dictionary;
+@synthesize password,repeatPassword,c_password,c_repeatPassword,c_currentPassword,title_newPass,title_changePass;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +30,8 @@
             identity = @"YES";
         }
         [self changeItemView: selection andIdentity: identity];
+        
+        [checkboxAutosuggestion setObjectValue: [dictionary objectForKey:@"autosuggestionStatus"]];
         
         [selection release];
         [identity release];
@@ -75,6 +77,15 @@
     [activeView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     
     [activeView displayIfNeeded];
+}
+
+
+-(IBAction)changeAutosuggestionStatus:(id)sender 
+{
+    path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController shared] getSettingsPlistPath]];
+    dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:path];
+    [dictionary setObject:[sender objectValue] forKey:@"autosuggestionStatus"];
+    [dictionary writeToFile:path atomically:NO];
 }
 
 -(IBAction)save:(id)sender

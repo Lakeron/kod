@@ -23,6 +23,8 @@
     KWordDictionary *wordDictionary_;
     
     int _completionLangID;   
+    NSString *path;
+    NSMutableDictionary *dictionary;
 }
 
 // The parent document

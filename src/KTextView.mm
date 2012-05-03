@@ -15,6 +15,8 @@
 #import "common.h"
 #import "Database.h"
 
+@class PMWindowController;
+
 // text container rect adjustments
 static NSSize kTextContainerInset = (NSSize){6.0, 4.0}; // {(LR),(TB)}
 static CGFloat kTextContainerXOffset = -8.0;
@@ -409,10 +411,16 @@ static CGFloat kColumnGuideWidth = 1.0;
             [self increaseIndentation];
         }
     } else {
-        if (keyCode != kVK_Delete || keyCode != kVK_Escape) {
-            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(complete:) object:nil];
-            [self performSelector:@selector(complete:) withObject:nil afterDelay:0.5];
+        path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController shared] getSettingsPlistPath]];
+        dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:path];
+       
+        if([[dictionary objectForKey:@"autosuggestionStatus"] boolValue]) {
+            if (keyCode != kVK_Delete || keyCode != kVK_Escape) {
+                [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(complete:) object:nil];
+                [self performSelector:@selector(complete:) withObject:nil afterDelay:0.5];
+            }
         }
+
         [super keyDown:event];
     }
 }
@@ -840,22 +848,26 @@ static CGFloat kColumnGuideWidth = 1.0;
     NSString *prefix = [text substringWithRange:charRange];
     
     NSMutableArray *tmpArr = [[NSMutableArray alloc] init];
-    [tmpArr addObject:[NSString stringWithString:@""]];
-    if(self.completionLangID > -1 && [prefix length] > 1) {
-        NSString *select = [NSString stringWithFormat:@"SELECT value FROM completion WHERE language_id = %d AND key LIKE '%@%%'", self.completionLangID, prefix];
+    
+    if([prefix length] > 1) {
+        [tmpArr addObject:[NSString stringWithString:@""]];
+        if(self.completionLangID > -1) {
+            NSString *select = [NSString stringWithFormat:@"SELECT value FROM completion WHERE language_id = %d AND key LIKE '%@%%'", self.completionLangID, prefix];
+            
+            [[Database shared] selectFromDatabase:select forEachRow:^(DatabaseRow *dbRow) {
+                [tmpArr addObject:[dbRow stringValueForColumn:@"value"]];
+            }];
+        }
         
-        [[Database shared] selectFromDatabase:select forEachRow:^(DatabaseRow *dbRow) {
-            [tmpArr addObject:[dbRow stringValueForColumn:@"value"]];
-        }];
+        [tmpArr addObjectsFromArray:[wordDictionary_ completionsForPrefix:prefix
+                                                               atPosition:charRange.location
+                                                                   inText:text
+                                                               countLimit:100]];
+        if([tmpArr count] == 1) {
+            [tmpArr removeObjectAtIndex:0];
+        }
     }
     
-    [tmpArr addObjectsFromArray:[wordDictionary_ completionsForPrefix:prefix
-                                                           atPosition:charRange.location
-                                                               inText:text
-                                                           countLimit:100]];
-    if([tmpArr count] == 1) {
-        [tmpArr removeObjectAtIndex:0];
-    }
     return [tmpArr autorelease];
 }
 
