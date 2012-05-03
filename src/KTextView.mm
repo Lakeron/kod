@@ -798,6 +798,11 @@ static CGFloat kColumnGuideWidth = 1.0;
 // overload of super
 - (BOOL)shouldChangeTextInRange:(NSRange)affectedRange
               replacementString:(NSString *)replacementString {
+    
+    /* TODOADNREJ 
+        zapnut frekvencne pouzivanie skratky
+     */
+    NSLog(@"shouldChangeTextInRange %@", replacementString);
     if ([super shouldChangeTextInRange:affectedRange
                      replacementString:replacementString]) {
         // update word dictionary

@@ -40,7 +40,6 @@
 
 @implementation KDocumentController
 
-
 + (KDocumentController*)kodController {
   return (KDocumentController*)[NSDocumentController sharedDocumentController];
 }

@@ -16,12 +16,13 @@
   NSInteger goToLineLastValue_;
   KPopUp *goToLinePopUp_; // non-nil while active
     
-  NSString *project;
+    NSString *project;
+    NSDate *checkTime;
+    NSDate *lastKeyInsertedTime;
 }
-
+@property NSDate *checkTime;
 @property(readonly) NSSplitView *verticalSplitView;
 @property(readonly) CGFloat statusBarHeight;
-@property(readonly) NSString *projectAndrej;
 
 // TODO: fullscreen
 // implement lockBarVisibilityForOwner... and friends (see chromium source)
@@ -37,5 +38,11 @@
 // Return project identifier if document set into project
 - (NSString*)getProject;
 - (void)setProject:(NSString *)p;
+
+- (NSDate *)getCheckTime;
+- (void)setCheckTime:(NSDate *)d;
+
+- (NSDate *)getLastKeyInsertedTime;
+- (void)setLastKeyInsertedTime:(NSDate *)d;
 
 @end

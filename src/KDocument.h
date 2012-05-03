@@ -43,7 +43,8 @@ extern NSString *const KDocumentWillCloseNotification;
   __weak KMetaRulerView *metaRulerView_;
                                           
   BOOL closeWithDelegate;
-                                      }
+}
+
 @property(assign, nonatomic) BOOL closeWithDelegate;
 @property(assign, nonatomic) BOOL isDirty;
 @property BOOL hasMetaRuler;

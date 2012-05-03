@@ -561,6 +561,10 @@ static NSString* _kDefaultTitle = @"Untitled";
         
         [project release];
     }
+//    NSLog(@"[self windowController] %@", [self windowController]);
+//    NSDate *test = [[self windowController] getCheckTime];
+//    NSLog(@"test %@", test);
+    
   KNodeEmitEvent("closeDocument", self, ident, nil);
   // TODO(rsms): emit "close" event in nodejs on our v8 wrapper object instead
   // of the kod module.
@@ -597,20 +601,25 @@ static NSString* _kDefaultTitle = @"Untitled";
     if ([NSThread isMainThread]) { [self debugUpdateASTViewer:self]; }
     else { K_DISPATCH_MAIN_ASYNC({ [self debugUpdateASTViewer:self]; }); }
   }
-    
-    NSLog(@"load KDocument");
 
+    // insert file in to aktive file for project
     ProjectManager *project = [[ProjectManager alloc] init];
-    
     [project addActiveFile:self.fileURL toProject: [[self windowController] getProject]];
-    
     [project release];
     
+    // set file type for autosuggestion
     NSString *select = [NSString stringWithFormat:@"SELECT language_id FROM file_type WHERE uti = '%@'", self.type];
     textView_.completionLangID = INT_MIN;
     [[Database shared] selectFromDatabase:select forEachRow:^(DatabaseRow *dbRow) {
     textView_.completionLangID = [dbRow intValueForColumn:@"language_id"];
     }];
+    
+    // set checkTime for time measurement
+//    if(![[self windowController] getCheckTime]) {
+//        [[self windowController] setCheckTime: [NSDate date]];
+//        NSLog(@"checkTime %@", [[self windowController] getCheckTime]);
+//    }
+    
   KNodeEmitEvent("activateDocument", self, nil);
 }
 

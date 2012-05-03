@@ -25,10 +25,30 @@
 @implementation KBrowserWindowController
 
 @synthesize verticalSplitView = splitView_;
-@synthesize projectAndrej;
+@synthesize checkTime;
 
 #pragma mark -
 #pragma mark Initialization
+
+- (NSDate *)getCheckTime {
+    if(checkTime) {
+        return checkTime;
+    } else {
+        return nil;
+    }
+}
+
+- (void)setCheckTime:(NSDate *)d {
+    checkTime = d;
+}
+
+- (NSDate *)getLastKeyInsertedTime {
+    return lastKeyInsertedTime;
+}
+
+- (void)setLastKeyInsertedTime:(NSDate *)d {
+    lastKeyInsertedTime = d;
+}
 
 - (NSString*)getProject {
     return project;
