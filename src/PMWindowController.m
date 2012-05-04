@@ -16,7 +16,7 @@
 
 static PMWindowController* _shared = nil;
 
-@synthesize pmViewController, pmDropView, pmListing, pmSettingController;
+@synthesize pmViewController, pmDropView, pmListing, pmSettingController, newProjectButton;
 
 +(PMWindowController *)shared
 {
@@ -47,6 +47,13 @@ static PMWindowController* _shared = nil;
 {
 	// load the icon view controller for later use
     pmDropView = [[PMDropView alloc] initWithFrame: [nsView frame]];
+    
+    NSAttributedString *attributedString = [[NSAttributedString alloc]
+                                            initWithString: [newProjectButton title] attributes: [NSDictionary
+                                                                                        dictionaryWithObjectsAndKeys: [NSColor whiteColor], NSForegroundColorAttributeName,
+                                                                                        nil]];
+    
+    [newProjectButton setAttributedTitle: attributedString];
 }
 
 - (NSString*)getProjectsPlistPath {
@@ -57,7 +64,7 @@ static PMWindowController* _shared = nil;
     return [[NSString alloc] initWithFormat:@"Contents/Resources/settings.plist"];
 }
 
-- (void)changeItemView:(NSString *)selection andIdentity: (id *) identity
+- (void)changeItemView:(NSString *)selection andIdentity: (NSString *) identity
 {
     if (selection) {
         if (selection == @"project")
@@ -107,6 +114,9 @@ static PMWindowController* _shared = nil;
         // so a container was selected - no view to display
         [self removeSubview];
         
+        [newProjectButton setImage: [NSImage imageNamed:@"bg_selected.jpg"]];
+        [pmListing reloadList];
+        
         [nsView addSubview:pmDropView];
         currentView = pmDropView;
     }
@@ -127,6 +137,11 @@ static PMWindowController* _shared = nil;
 -(IBAction)openSetting:(id)sender 
 {
     [self changeItemView:@"setting" andIdentity:nil];
+}
+
+-(IBAction)openNewProject:(id)sender 
+{
+[self changeItemView:nil andIdentity:nil];
 }
 
 @end

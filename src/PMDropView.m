@@ -111,9 +111,9 @@
 
 -(void)drawRect:(NSRect)dirtyRect{
     if(highlight) {
-        self.backgroundImage = [NSImage imageNamed:@"drag-active.png"];
+        self.backgroundImage = [NSImage imageNamed:@"drag-active"];
     } else {
-        self.backgroundImage = [NSImage imageNamed:@"drag-deactive.png"];
+        self.backgroundImage = [NSImage imageNamed:@"drag-deactive"];
     }
     [backgroundImage drawInRect:[self bounds]
                        fromRect:NSMakeRect(0.0f, 0.0f, backgroundImage.size.width, backgroundImage.size.height)

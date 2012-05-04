@@ -50,19 +50,19 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
 	if([self isSelected]) {
-        NSImage *backgroundImage = [NSImage imageNamed:@"selected_pattern"];
+        NSImage *backgroundImage = [NSImage imageNamed:@"bg_selected"];
         
         [backgroundImage drawInRect:[self bounds]
                            fromRect:NSMakeRect(0.0f, 0.0f, backgroundImage.size.width, backgroundImage.size.height)
                           operation:NSCompositeSourceAtop
                            fraction:1.0f];
         
-//		[[NSColor selectedControlColor] set];
-//        NSBezierPath *roundedRect = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:0.0 yRadius:0.0];
-//        [roundedRect fill];
+        [[[self subviews] objectAtIndex:1] setTextColor:[NSColor whiteColor]]; 
+        [[[self subviews] objectAtIndex:2] setImage:[NSImage imageNamed:@"clock_white"]]; 
 	}
 	else {
-//		[[NSColor disabledControlTextColor] set];
+        [[[self subviews] objectAtIndex:1] setTextColor:[NSColor grayColor]]; 
+        [[[self subviews] objectAtIndex:2] setImage:[NSImage imageNamed:@"clock"]]; 
     }
     
 }

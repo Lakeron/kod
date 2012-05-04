@@ -39,10 +39,7 @@
     NSArray *list = [dictionary allKeys];
     
     for (NSArray *key in list) {
-        NSArray *project = [dictionary objectForKey:key];
-        NSString *title = [[NSString alloc] initWithFormat: [project objectForKey:@"name"]];
-        [_listItems addObject:project];
-        [title release];
+        [_listItems addObject:[dictionary objectForKey:key]];    
     }
     
     [listView reloadData];
@@ -75,25 +72,14 @@
 
 - (void)listViewSelectionDidChange:(NSNotification*)aNotification
 {
-    NSLog(@"listViewSelectionDidChange");
+    [[[PMWindowController shared] newProjectButton] setImage:[NSImage imageNamed:@"bg_button"]];
     [[PMWindowController shared] changeItemView:@"project" andIdentity:[_listItems objectAtIndex:[[aNotification object] selectedRow]]];
 }
-
 
 // The following are only needed for drag'n drop:
 - (BOOL)listView:(PXListView*)aListView writeRowsWithIndexes:(NSIndexSet*)rowIndexes toPasteboard:(NSPasteboard*)dragPasteboard
 {
-	// +++ Actually drag the items, not just dummy data.
-	[dragPasteboard declareTypes: [NSArray arrayWithObjects: NSStringPboardType, nil] owner: self];
-	[dragPasteboard setString: @"Just Testing" forType: NSStringPboardType];
-	
-	return YES;
-}
-
-- (NSDragOperation)listView:(PXListView*)aListView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSUInteger)row
-      proposedDropHighlight:(PXListViewDropHighlight)dropHighlights
-{
-	return NSDragOperationCopy;
+	return NO;
 }
 
 - (void)dealloc

@@ -22,12 +22,15 @@
     PMSettingController         *pmSettingController;
     IBOutlet PMListing          *pmListing;
     NSView                      *currentView;
+    IBOutlet NSButton           *newProjectButton;
 }
 
 @property (retain,nonatomic) PMViewController *pmViewController;
 @property (retain,nonatomic) PMDropView *pmDropView;
 @property (retain,nonatomic) PMListing *pmListing;
 @property (retain,nonatomic) PMSettingController *pmSettingController;
+@property (retain,nonatomic) IBOutlet NSButton *newProjectButton;
+
 
 +(PMWindowController *)shared;
 
@@ -38,5 +41,6 @@
 - (NSString*)getSettingsPlistPath;
 
 -(IBAction)openSetting:(id)sender;
+-(IBAction)openNewProject:(id)sender;
 
 @end
