@@ -138,4 +138,12 @@
     }
 }
 
+//************Histogram DataSource
+- (float)frequencyForBucketWithLowerBound:(float)lowerBound andUpperLimit:(float)upperLimit;
+{
+	return .398942*exp(-.5*pow(((lowerBound + upperLimit)/2-5)/1.5,2))*24;
+	//return pow((upperLimit-5),2) + 50;
+}
+
+
 @end
