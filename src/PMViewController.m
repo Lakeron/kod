@@ -59,10 +59,14 @@
     NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController shared] getSettingsPlistPath]];
     current_password = [[NSMutableDictionary dictionaryWithContentsOfFile:path] objectForKey:@"password"];
     
-//    if(![password.stringValue isEqualToString:@""] && [password.stringValue isEqualToString:current_password]) {        
-        [noteLock setHidden:NO];
-        [noteView setHidden:YES];
-//    }
+    if(!current_password) {        
+        [[PMWindowController shared] changeItemView:@"setting" andIdentity:nil];
+    } else {
+        password.stringValue = @"";
+    }
+    
+    [noteLock setHidden:NO];
+    [noteView setHidden:YES];
 }
 
 -(IBAction)openProject:(id)sender 
