@@ -54,6 +54,17 @@
     }
 }
 
+-(IBAction)lockNote:(id)sender
+{
+    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController shared] getSettingsPlistPath]];
+    current_password = [[NSMutableDictionary dictionaryWithContentsOfFile:path] objectForKey:@"password"];
+    
+//    if(![password.stringValue isEqualToString:@""] && [password.stringValue isEqualToString:current_password]) {        
+        [noteLock setHidden:NO];
+        [noteView setHidden:YES];
+//    }
+}
+
 -(IBAction)openProject:(id)sender 
 {
    // otvorit dokument

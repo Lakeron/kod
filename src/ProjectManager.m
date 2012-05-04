@@ -35,7 +35,7 @@
     
     [project setObject:n forKey:@"name"];
     [project setObject:p forKey:@"path"];
-    [project setObject:@"(Keep your data organized. You can store FTP, GIT or any valuable information about your project.)" forKey:@"note"];
+    [project setObject:@"ftp://mysite.com \nu: username \np: mystrongpass \n\ngit://git.mysite.com \n(ed:00:b1:4e:00:a7:f7:00:00:9d:68:54:dc:13:00:99)" forKey:@"note"];
     NSArray *emptyArray = [[NSArray alloc] init];
     [project setObject: emptyArray forKey:@"todo"];
     [project setObject: emptyArray forKey:@"activeFiles"];

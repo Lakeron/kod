@@ -29,5 +29,6 @@
 
 -(IBAction)openProject:(id)sender;
 -(IBAction)unlockNote:(id)sender;
+-(IBAction)lockNote:(id)sender;
 
 @end
