@@ -551,7 +551,6 @@ static NSString* _kDefaultTitle = @"Untitled";
 - (void)tabWillCloseInBrowser:(CTBrowser*)browser atIndex:(NSInteger)index {
   NSNumber *ident = [NSNumber numberWithUnsignedInteger:self.identifier];
 
-
     NSLog(@"close KDocument");
     if(!closeWithDelegate) {
         NSLog(@"closeWithDelegate");

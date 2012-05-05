@@ -799,10 +799,14 @@ static CGFloat kColumnGuideWidth = 1.0;
 - (BOOL)shouldChangeTextInRange:(NSRange)affectedRange
               replacementString:(NSString *)replacementString {
     
-    /* TODOADNREJ 
-        zapnut frekvencne pouzivanie skratky
-     */
-    NSLog(@"shouldChangeTextInRange %@", replacementString);
+    // increasing the search index
+    NSString *select = [NSString stringWithFormat:@"SELECT id FROM completion WHERE language_id = %d AND key = '%@'", self.completionLangID, replacementString];
+    
+    [[Database shared] selectFromDatabase:select forEachRow:^(DatabaseRow *dbRow) {
+        NSString *select = [NSString stringWithFormat:@"UPDATE completion SET used=used+1 WHERE id = '%@'", [dbRow stringValueForColumn:@"id"]];
+        [[Database shared] selectFromDatabase:select];
+    }];
+    
     if ([super shouldChangeTextInRange:affectedRange
                      replacementString:replacementString]) {
         // update word dictionary
@@ -857,7 +861,7 @@ static CGFloat kColumnGuideWidth = 1.0;
     if([prefix length] > 1) {
         [tmpArr addObject:[NSString stringWithString:@""]];
         if(self.completionLangID > -1) {
-            NSString *select = [NSString stringWithFormat:@"SELECT value FROM completion WHERE language_id = %d AND key LIKE '%@%%'", self.completionLangID, prefix];
+            NSString *select = [NSString stringWithFormat:@"SELECT value FROM completion WHERE language_id = %d AND key LIKE '%@%%' ORDER BY used DESC", self.completionLangID, prefix];
             
             [[Database shared] selectFromDatabase:select forEachRow:^(DatabaseRow *dbRow) {
                 [tmpArr addObject:[dbRow stringValueForColumn:@"value"]];

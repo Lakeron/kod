@@ -81,4 +81,25 @@ static Database *sharedDatabase;
     return resultCount;
 }
 
+- (int)selectFromDatabase:(NSString *)selectString
+{
+    int resultCount = 0;
+    // Setup the SQL Statement and compile it for faster access
+    const char *sqlStatement = [selectString UTF8String];
+    sqlite3_stmt *compiledStatement;
+    
+    if (sqlite3_prepare_v2(_db, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK)
+    {
+        int x = sqlite3_step(compiledStatement);
+        if (x != SQLITE_ROW && x != SQLITE_DONE)
+        {
+            NSLog(@"SQLITE ERROR: %i :%@", x, [NSString stringWithCString:sqlite3_errmsg(_db) encoding:NSUTF8StringEncoding]);
+        }
+    }
+    // Release the compiled statement from memory
+    sqlite3_finalize(compiledStatement);
+    
+    return resultCount;
+}
+
 @end

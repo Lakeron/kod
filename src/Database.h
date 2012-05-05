@@ -11,8 +11,8 @@
 
 @interface Database : NSObject
 
-- (int)insertOrUpdateTable:(NSString*) tableName data:(NSDictionary*) columnValueDictionary;
 - (int)selectFromDatabase:(NSString*) selectString forEachRow:(void (^) (DatabaseRow *dbRow)) rowBlock;
+- (int)selectFromDatabase:(NSString *)selectString;
 
 + (Database*)shared;
 + (void)releaseShared;
