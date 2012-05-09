@@ -30,6 +30,11 @@
     return self;
 }
 
+-(NSMutableDictionary *)getProjectByName: (NSString *)name 
+{
+    return [projects objectForKey: name];
+}
+
 -(void)setProductWithName: (NSString *)n AndPath: (NSString *)p {
     project = [[NSMutableDictionary alloc] init];
     

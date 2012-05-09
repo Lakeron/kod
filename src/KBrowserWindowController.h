@@ -20,7 +20,9 @@
     NSDate *checkTime;
     NSDate *lastKeyInsertedTime;
 }
-@property NSDate *checkTime;
+@property(retain,nonatomic) NSDate *checkTime;
+@property(retain,nonatomic) NSDate *lastKeyInsertedTime;
+
 @property(readonly) NSSplitView *verticalSplitView;
 @property(readonly) CGFloat statusBarHeight;
 
@@ -34,15 +36,17 @@
 - (IBAction)goToLine:(id)sender;
 
 - (BOOL)openFileDirectoryAtURL:(NSURL *)absoluteURL error:(NSError **)outError;
+- (BOOL)addActiveTime;
 
 // Return project identifier if document set into project
 - (NSString*)getProject;
 - (void)setProject:(NSString *)p;
 
-- (NSDate *)getCheckTime;
-- (void)setCheckTime:(NSDate *)d;
+//- (NSDate *)getCheckTime;
+//- (void)setCheckTime:(NSDate *)d;
 
-- (NSDate *)getLastKeyInsertedTime;
-- (void)setLastKeyInsertedTime:(NSDate *)d;
+//- (NSDate *)getLastKeyInsertedTime;
+- (void)setLastKeyInsertedTime;
 
+-(void)setTime;
 @end

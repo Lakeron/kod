@@ -8,6 +8,7 @@
 
 #import "PMViewController.h"
 #import "PMWindowController.h"
+#import "CTHistogramView.h"
 
 @class KAppDelegate;
 @class KDocumentController;
@@ -27,6 +28,17 @@
     
     NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[[PMWindowController shared] getSettingsPlistPath]];
     current_password = [[NSMutableDictionary dictionaryWithContentsOfFile:path] objectForKey:@"password"];
+
+    if(project) {
+        for (NSView *view in [[self view] subviews]) {
+            if([view isKindOfClass:[CTHistogramView class]]) {
+                float count = [[project objectForKey:@"spendTime"] count];
+//                [view setXMin: 1];
+                [view setXMax: count];
+                [view setYMax: 24];
+            }
+        }
+    }
     
     if(current_password) {
         [noteView setHidden:YES];
@@ -155,9 +167,19 @@
 
 //************Histogram DataSource
 - (float)frequencyForBucketWithLowerBound:(float)lowerBound andUpperLimit:(float)upperLimit;
-{
-	return .398942*exp(-.5*pow(((lowerBound + upperLimit)/2-5)/1.5,2))*24;
-	//return pow((upperLimit-5),2) + 50;
+{    
+    int index = lowerBound;
+    float data;
+    data = 0.0;
+    if(project) {
+        NSArray *test = [[NSArray alloc] initWithArray:[project objectForKey:@"spendTime"]];
+        for (NSView *view in [[self view] subviews]) {
+            if([view isKindOfClass:[CTHistogramView class]] && [test count] > index) {
+                data = [[test objectAtIndex:index] floatValue]/3600;
+            }
+        }
+    }
+	return data;
 }
 
 

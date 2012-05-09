@@ -547,42 +547,6 @@ static NSString* _kDefaultTitle = @"Untitled";
   return y;
 }
 
-
-- (void)tabWillCloseInBrowser:(CTBrowser*)browser atIndex:(NSInteger)index {
-  NSNumber *ident = [NSNumber numberWithUnsignedInteger:self.identifier];
-
-    NSLog(@"close KDocument");
-    if(!closeWithDelegate) {
-        NSLog(@"closeWithDelegate");
-        ProjectManager *project = [[ProjectManager alloc] init];
-        
-        [project removeActiveFile:self.fileURL toProject: [[self windowController] getProject]];
-        
-        [project release];
-    }
-//    NSLog(@"[self windowController] %@", [self windowController]);
-//    NSDate *test = [[self windowController] getCheckTime];
-//    NSLog(@"test %@", test);
-    
-  KNodeEmitEvent("closeDocument", self, ident, nil);
-  // TODO(rsms): emit "close" event in nodejs on our v8 wrapper object instead
-  // of the kod module.
-
-  [self post:KDocumentWillCloseNotification];
-  [self emitEvent:@"close" argument:self];
-
-  [super tabWillCloseInBrowser:browser atIndex:index];
-
-  NSWindowController *wc = browser.windowController;
-  if (wc) {
-    [self removeWindowController:wc];
-    [self setWindow:nil];
-  }
-  [[NSDocumentController sharedDocumentController] removeDocument:self];
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
 - (void)tabDidBecomeSelected {
   [super tabDidBecomeSelected];
   if (browser_) {
@@ -613,13 +577,43 @@ static NSString* _kDefaultTitle = @"Untitled";
     textView_.completionLangID = [dbRow intValueForColumn:@"language_id"];
     }];
     
-    // set checkTime for time measurement
-//    if(![[self windowController] getCheckTime]) {
-//        [[self windowController] setCheckTime: [NSDate date]];
-//        NSLog(@"checkTime %@", [[self windowController] getCheckTime]);
-//    }
+    // for time measurement
+    [[self windowController] setLastKeyInsertedTime];
     
   KNodeEmitEvent("activateDocument", self, nil);
+}
+
+- (void)tabWillCloseInBrowser:(CTBrowser*)browser atIndex:(NSInteger)index {
+    NSNumber *ident = [NSNumber numberWithUnsignedInteger:self.identifier];
+    
+    NSLog(@"close KDocument");
+    if(!closeWithDelegate) {
+        NSLog(@"closeWithDelegate");
+        ProjectManager *project = [[ProjectManager alloc] init];
+        
+        [project removeActiveFile:self.fileURL toProject: [[self windowController] getProject]];
+        
+        [project release];
+    }
+    
+    [[self windowController] addActiveTime];
+    
+    KNodeEmitEvent("closeDocument", self, ident, nil);
+    // TODO(rsms): emit "close" event in nodejs on our v8 wrapper object instead
+    // of the kod module.
+    
+    [self post:KDocumentWillCloseNotification];
+    [self emitEvent:@"close" argument:self];
+    
+    [super tabWillCloseInBrowser:browser atIndex:index];
+    
+    NSWindowController *wc = browser.windowController;
+    if (wc) {
+        [self removeWindowController:wc];
+        [self setWindow:nil];
+    }
+    [[NSDocumentController sharedDocumentController] removeDocument:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -694,7 +688,9 @@ static void _exploreNode(NSTextStorage *textStorage,
     if ([NSThread isMainThread]) { [self debugUpdateASTViewer:self]; }
     else { K_DISPATCH_MAIN_ASYNC({ [self debugUpdateASTViewer:self]; }); }
   }
-
+    
+    [[self windowController] setLastKeyInsertedTime];
+    
   NSTextStorage *textStorage = textView_.textStorage;
   NSUInteger offset = node->absoluteSourceRange().location;
 

@@ -30,4 +30,5 @@
 
 -(ProjectManager *)save;
 
+-(NSMutableDictionary *)getProjectByName: (NSString *)name ;
 @end

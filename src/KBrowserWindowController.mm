@@ -21,33 +21,57 @@
 #import "KPopUp.h"
 #import "kconf.h"
 
+#import "ProjectManager.h"
+
 
 @implementation KBrowserWindowController
 
 @synthesize verticalSplitView = splitView_;
-@synthesize checkTime;
+@synthesize checkTime, lastKeyInsertedTime;
 
 #pragma mark -
 #pragma mark Initialization
 
-- (NSDate *)getCheckTime {
-    if(checkTime) {
-        return checkTime;
-    } else {
-        return nil;
+-(void)setTime
+{
+    self.checkTime = [NSDate date];  
+    self.lastKeyInsertedTime = [NSDate date];
+}
+
+- (BOOL)addActiveTime 
+{
+    NSLog(@"project %@", project);
+    if(project) {
+        float time = [lastKeyInsertedTime timeIntervalSinceDate:checkTime];
+        
+        ProjectManager *pManager = [[ProjectManager alloc] init]; 
+        
+        NSMutableDictionary *p = [pManager getProjectByName: project];
+        NSMutableDictionary *spendTime = [p objectForKey:@"spendTime"];
+        
+        NSDate* date = [NSDate date];
+        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"dd.MM.yyyy"];
+        
+        if([spendTime objectForKey:[formatter stringFromDate:date]]) {
+            float actualTime = [[spendTime objectForKey:[formatter stringFromDate:date]] floatValue];
+            time = actualTime+time;
+        }
+        
+        [spendTime setObject:[NSNumber numberWithFloat:time] forKey:[formatter stringFromDate:date]];
+        
+        [p setObject:spendTime forKey:@"spendTime"];
+        [pManager saveProject:p];
+        
+        [self setTime];
+                
+        return YES;
     }
+    return NO;
 }
 
-- (void)setCheckTime:(NSDate *)d {
-    checkTime = d;
-}
-
-- (NSDate *)getLastKeyInsertedTime {
-    return lastKeyInsertedTime;
-}
-
-- (void)setLastKeyInsertedTime:(NSDate *)d {
-    lastKeyInsertedTime = d;
+- (void)setLastKeyInsertedTime {
+    self.lastKeyInsertedTime = [NSDate date];
 }
 
 - (NSString*)getProject {
@@ -107,13 +131,14 @@
 
 
 - (id)init {
-  // subclasses could override this to provide a custom |CTBrowser|
+    // subclasses could override this to provide a custom |CTBrowser|
+    [self setTime];
+    
   return [self initWithBrowser:[KBrowser browser]];
 }
 
 
 - (void)dealloc {
-    NSLog(@"Windows Broser dealloc");
   [self stopObserving];
   [[self window] setDelegate:nil];
   if (toolbarController_)
